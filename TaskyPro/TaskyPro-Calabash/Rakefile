@@ -35,7 +35,7 @@ end
 @dsym = './Tasky.iOS/bin/iPhone/Debug/TaskyiOS.app.dSYM'
 
 # These values will come from either the file rake_env or environment variables
-@testcloud_api_key = fetch(:testcloud_api_key)
+@testcloud_api_key = fetch(:xtc_api_key)
 @android_device_id = fetch(:android_device_id)
 @ios_device_id = fetch(:ios_device_id)
 
@@ -97,17 +97,16 @@ task :build_ios => [:clean] do
 end
 
 desc "Compile the APK and submits it to Test Cloud"
-task :testcloud_android => [:require_environment, :build_android] do
+task :xtc_android => [:require_environment, :build_android] do
 
   raise "Missing the APK #{@apk}" unless File.exists?(@apk)
-  system "calabash-android build #{@apk}"
 
-  # Add the --async option to run asynchronously.
+  system "calabash-android build #{@apk}"
   system "test-cloud submit #{@apk} #{@testcloud_api_key} --devices #{@android_device_id} --profile=android --config=config/cucumber.yml --pretty --app-name=\"Tasky Pro\""
 end
 
 desc "Recompiles the IPA and submits it to Test Cloud."
-task :testcloud_ios => [:require_environment, :build_ios] do
+task :xtc_ios => [:require_environment, :build_ios] do
   system "test-cloud submit #{@ipa} #{@testcloud_api_key} --devices #{@ios_device_id} --profile=ios --config=config/cucumber.yml --pretty -y #{@dsym} --app-name=\"Tasky Pro\""
 end
 

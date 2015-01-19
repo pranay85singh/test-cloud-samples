@@ -4,7 +4,7 @@ using Android.App;
 using Android.Content;
 using Android.OS;
 using Android.Widget;
-using System.ComponentModel;
+
 using CreditCardValidation.Common;
 
 namespace CreditCardValidation.Droid
@@ -28,22 +28,18 @@ namespace CreditCardValidation.Droid
             _errorMessagesTextField = FindViewById<TextView>(Resource.Id.errorMessagesText);
             _creditCardTextField = FindViewById<EditText>(Resource.Id.creditCardNumberText);
             _validateButton = FindViewById<Button>(Resource.Id.validateButton);
-            _validateButton.Click += (sender, e) =>
-            {
+            _validateButton.Click += (sender, e) =>{
                 _errorMessagesTextField.Text = String.Empty;
                 string errMessage;
 
                 if (_validator.IsCCValid(_creditCardTextField.Text, out errMessage))
                 {
-                    Intent i = new Intent(this, typeof(CreditCardValidationSuccess));
+                                             var i = new Intent(this, typeof(CreditCardValidationSuccess));
                     StartActivity(i);
                 }
                 else
                 {
-                    RunOnUiThread(() =>
-                    {
-                        _errorMessagesTextField.Text = errMessage;
-                    });
+                                             RunOnUiThread(() => { _errorMessagesTextField.Text = errMessage; });
                 }
             };
         }
