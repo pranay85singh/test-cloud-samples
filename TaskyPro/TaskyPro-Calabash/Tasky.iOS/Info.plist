@@ -15,8 +15,6 @@
 	</array>
 	<key>CFBundleIdentifier</key>
 	<string>com.xamarin.samples.taskytouch</string>
-	<key>CFBundleVersion</key>
-	<string>1</string>
 	<key>UIDeviceFamily</key>
 	<array>
 		<integer>1</integer>
@@ -29,5 +27,7 @@
 	<string>7.0</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1</string>
+	<key>CFBundleVersion</key>
+	<string>2</string>
 </dict>
 </plist>

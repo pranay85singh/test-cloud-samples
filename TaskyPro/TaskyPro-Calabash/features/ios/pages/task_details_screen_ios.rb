@@ -64,7 +64,7 @@ class TaskDetailsScreen < Calabash::IBase
 
   def is_done?
     query_results = query("switch", "isOn")
-    return query_results[0] == "1"
+    return query_results[0] == 1
   end
 
   def tap_cancel_button
