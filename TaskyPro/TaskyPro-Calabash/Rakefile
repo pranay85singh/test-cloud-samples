@@ -56,7 +56,6 @@ task :clean => [:clean_screenshots] do
       "./bin",
       "./obj",
       "./screenshots",
-      "./test_servers",
       "./testresults.html",
       "./Tasky.iOS/bin",
       "./Tasky.iOS/obj",
