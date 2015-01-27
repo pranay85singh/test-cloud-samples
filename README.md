@@ -3,6 +3,8 @@ Test Cloud Samples
 
 Samples that illustrate how to perform automated UI testing with Xamarin Test Cloud on multiple platforms.
 
+The original Calabash X-Platform Example is still residing in it's original location at [https://github.com/calabash/x-platform-example](https://github.com/calabash/x-platform-example).
+
 License
 -------
 
