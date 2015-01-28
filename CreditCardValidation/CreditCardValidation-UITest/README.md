@@ -64,5 +64,5 @@ The bash script `testcloud-submit-example.sh` demonstrates how to compile the AP
 
 The signing information file was created with the following command line (the environment variables were initialized in the bash script):
  
-    mono text-cloud.exe gen-sign-info $APK_FINAL ./creditcardvalidation-example.keystore $KEYSTORE_PASS uitest_sample $ALIAS_PASS --dir ./
+    mono test-cloud.exe gen-sign-info $APK_FINAL ./creditcardvalidation-example.keystore $KEYSTORE_PASS uitest_sample $ALIAS_PASS --dir ./
 
