@@ -186,3 +186,4 @@ FakesAssemblies/
 *.userprefs
 screenshot_*.png
 TaskyPro/TaskyPro-Calabash/test_servers
+CreditCardValidation/CreditCardValidation-Calabash/testcloud.sh
