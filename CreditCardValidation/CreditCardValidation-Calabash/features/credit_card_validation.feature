@@ -1,7 +1,7 @@
 Feature: Credit card validation.
   Credit card numbers must be exactly 16 characters.
 
-  Scenario: Credit card number is too short (using redefined steps)
+  Scenario: Credit card number is too short (using predefined steps)
     # this is an example of using predefined steps - not really recommended.
     Given I use the native keyboard to enter "123456" into text field number 1
     And I touch the "ValidateButton" button

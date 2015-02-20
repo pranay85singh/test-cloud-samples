@@ -115,7 +115,7 @@ task :xtc_android => [:require_environment, :build_android] do
 end
 
 task :xtc_ios => [:require_environment, :build_ios] do
-  system "test-cloud submit #{@ipa} #{@xtc_api_key} --devices #{@ios_device_id} --profile=ios --config=config/cucumber.yml --pretty -y #{@dsym} --app-name=\"Tasky Pro\""
+  system "test-cloud submit #{@ipa} #{@xtc_api_key} --devices #{@ios_device_id} --profile=ios --config=config/cucumber.yml --pretty -y #{@dsym} "
 end
 
 desc "Builds the applications and submits apps to Xamarin Test Cloud."
@@ -124,4 +124,11 @@ end
 
 task :test_android => [:build_android] do
   system "calabash-android run #{@apk} -p android"
+end
+
+desc "Submit the app to Staging"
+task :xtc_staging do
+  cmd = "XTC_ENDPOINT=https://testcloud.xamstage.com/ci test-cloud submit /Users/tom/work/xamarin/code/test-cloud-samples/TaskyPro/TaskyPro-Calabash/Tasky.iOS/bin/iPhone/Debug/TaskyiOS-2.ipa 93c0a4e7a6cb75547c070807b4b65add -d b1be4e9b -p ios -u tom.opgenorth@xamarin.com -y /Users/tom/work/xamarin/code/test-cloud-samples/TaskyPro/TaskyPro-Calabash/Tasky.iOS/bin/iPhone/Debug/TaskyiOS.app.dSYM -c ./config/cucumber.yml"
+  puts cmd
+  system(cmd)
 end
