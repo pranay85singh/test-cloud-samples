@@ -104,6 +104,9 @@ end
 task :xtc_android => [:require_environment, :build_android] do
   raise "Missing the APK #{@apk}" unless File.exists?(@apk)
 
+  build_test_server_cmd = "calabash-android build #{@apk}"
+  system(build_test_server_cmd)
+
   submit_to_xtc_cmd= "test-cloud submit #{@apk} #{@xtc_api_key} --devices #{@android_device_id} --profile=android --config=config/cucumber.yml --pretty --app-name=\"Tasky Pro\" --user=#{@xtc_user} --series \"Calabash\""
 
   system(submit_to_xtc_cmd)
