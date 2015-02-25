@@ -31,7 +31,7 @@ namespace CreditCardValidation.Tests
         [TestFixtureSetUp]
         public void TestFixtureSetup()
         {
-            PathToIPA = "../../../CreditCardValidation.iOS/bin/iPhoneSimulator/Debug/CreditCardValidationiOS-1.0.ipa";
+            PathToIPA = "../../../CreditCardValidation.iOS/bin/iPhoneSimulator/Debug/CreditCardValidationiOS.app";
             PathToAPK = "../../../CreditCardValidation.Droid/bin/Debug/CreditCardValidation.Droid.APK";
         }
 
@@ -97,6 +97,7 @@ namespace CreditCardValidation.Tests
         {
             // Arrange - set up our queries for the views
             ConfigureTest(platform);
+			_app.Repl();
 
             /* Act */
             _app.EnterText(_queries.CreditCardNumberView, new string('9', 15));
@@ -161,9 +162,9 @@ namespace CreditCardValidation.Tests
             {
                 _app = ConfigureApp.iOS
                                    .EnableLocalScreenshots()
-					.DeviceIdentifier("f8c67472f88efb1985c2f5e73698d6bb36988f5d")
-					.AppBundle("com.xamarin.calabash.example.creditcardvalidation")
-//                                   .AppBundle(PathToIPA)
+//					.DeviceIdentifier("f8c67472f88efb1985c2f5e73698d6bb36988f5d")
+//					.AppBundle("com.xamarin.calabash.example.creditcardvalidation")
+                                   .AppBundle(PathToIPA)
                                    .StartApp();
             }
             else

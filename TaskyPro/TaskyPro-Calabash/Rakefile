@@ -31,8 +31,9 @@ end
 
 # These values will come from either the file rake_env or environment variables
 @xtc_api_key = fetch(:xtc_api_key)
-@android_device_id = fetch(:android_device_id)
-@ios_device_id = fetch(:ios_device_id)
+@android_device_id = fetch(:xtc_android_device_id)
+@ios_device_id = fetch(:xtc_ios_device_id)
+@xtc_user = fetch(:xtc_user)
 
 task :default => [:clean, :build]
 
@@ -42,11 +43,15 @@ task :require_environment do
   end
 
   if @ios_device_id.nil? || 0 == @ios_device_id.length
-    raise Exception.new("No iOS test devices specifed. Please set the IOS_DEVICE_ID environment variable.")
+    raise Exception.new("No iOS test devices specifed. Please set the XTC_IOS_DEVICE_ID environment variable.")
   end
 
   if @android_device_id.nil? || 0 == @android_device_id.length
-    raise Exception.new("No Android test devices specified. Please set the ANDROID_DEVICE_ID environment variable.")
+    raise Exception.new("No Android test devices specified. Please set the XTC_ANDROID_DEVICE_ID environment variable.")
+  end
+
+  if (@xtc_user.nil? || 0 == @xtc_user)
+    raise Exception.new("No Test Cloud team member specified. Please set the XTC_USER environment variable.")
   end
 end
 
@@ -99,23 +104,20 @@ end
 task :xtc_android => [:require_environment, :build_android] do
   raise "Missing the APK #{@apk}" unless File.exists?(@apk)
 
-  submit_to_xtc_cmd= "test-cloud submit #{@apk} #{@xtc_api_key} --devices #{@android_device_id} --profile=android --config=config/cucumber.yml --pretty --app-name=\"Tasky Pro\""
   build_test_server_cmd = "calabash-android build #{@apk}"
+  system(build_test_server_cmd)
 
-  puts build_test_server_cmd
-  result_build_test_server = system(build_test_server_cmd)
+  # Note that we submit to XTC asynchronously.
+  submit_to_xtc_cmd= "test-cloud submit #{@apk} #{@xtc_api_key} --async --devices #{@android_device_id} --profile=android --config=config/cucumber.yml --pretty --app-name=\"Tasky Pro\" --user=#{@xtc_user} --series \"Calabash\""
 
-  puts submit_to_xtc_cmd
-  if result_build_test_server
-    system(submit_to_xtc_cmd)
-  else
-    puts "There was a problem rebuilding the test server - won't submit the APK to Test Cloud. #{@pak}"
-  end
-
+  system(submit_to_xtc_cmd)
 end
 
 task :xtc_ios => [:require_environment, :build_ios] do
-  system "test-cloud submit #{@ipa} #{@xtc_api_key} --devices #{@ios_device_id} --profile=ios --config=config/cucumber.yml --pretty -y #{@dsym} --app-name=\"Tasky Pro\""
+  # Note that we submit to XTC asynchronously.
+  submit_to_xtc_cmd = "test-cloud submit #{@ipa} #{@xtc_api_key} --async --devices #{@ios_device_id} --profile=ios --config=config/cucumber.yml --pretty -y #{@dsym} --user=#{@xtc_user} --app-name=\"Tasky Pro\" --series \"Calabash\""
+
+  system(submit_to_xtc_cmd)
 end
 
 desc "Builds the applications and submits apps to Xamarin Test Cloud."

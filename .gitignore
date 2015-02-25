@@ -187,3 +187,6 @@ FakesAssemblies/
 screenshot_*.png
 TaskyPro/TaskyPro-Calabash/test_servers
 CreditCardValidation/CreditCardValidation-Calabash/testcloud.sh
+TaskyPro/TaskyPro-Calabash/init_vars.sh
+CreditCardValidation/CreditCardValidation-UITest/init_vars.sh
+CreditCardValidation/CreditCardValidation-Calabash/init_vars.sh
