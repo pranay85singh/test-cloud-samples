@@ -22,36 +22,44 @@ def fetch(key)
 end
 
 # Hardcoding these paths here - adjust them as necessary. These shouldn't change much (if at all)
+@current_dir = File.dirname(__FILE__)
 @mono = '/Library/Frameworks/Mono.framework/Versions/Current/bin/mono'
 @mdtool = '/Applications/Xamarin\\ Studio.app/Contents/MacOS/mdtool build'
 @xbuild = '/usr/bin/xbuild'
+# This value has to be updated each time the UITest NuGet package is update.
 @test_cloud = "#{@mono} ./packages/Xamarin.UITest.0.6.9/tools/test-cloud.exe"
 
-@test_assembly_dir = "./CreditCardValidation.UITests/bin/Debug/"
+@xtc_app_name = 'Simple Credit Card Validator'
+@xtc_series = 'UITest'
+@test_assembly_dir = './CreditCardValidation.UITests/bin/Debug/'
 @apk = './CreditCardValidation.Droid/bin/Debug/CreditCardValidation.Droid.apk'
 @ipa = './CreditCardValidation.iOS/bin/iPhone/Debug/CreditCardValidationiOS-1.0.ipa'
-@dsym = './CreditCardValiation.iOS/bin/iPhone/Debug/CreditCardValidationiOS.app.dSYM'
+@dsym = './CreditCardValidation.iOS/bin/iPhone/Debug/CreditCardValidationiOS.app.dSYM'
 
-# These values will come from either the file rake_env or environment variables
-@testcloud_api_key = fetch(:xtc_api_key)
-@android_device_id = fetch(:android_device_id)
-@ios_device_id = fetch(:ios_device_id)
+# These values will come environment variables
+@xtc_api_key = fetch(:xtc_api_key)
+@android_device_id = fetch(:xtc_android_device_id)
+@ios_device_id = fetch(:xtc_ios_device_id)
+@xtc_user = fetch(:xtc_user)
 
 task :default => [:clean, :build]
 
 task :require_environment do
-  if @testcloud_api_key.nil? || 0 == @testcloud_api_key.length
-    raise Exception.new("No Test Cloud API key specified - set the XTC_API_KEY environment variable.")
-  end
-
-  if @android_device_id.nil? || 0 == @android_device_id.length
-    raise Exception.new("No Android Device ID specified - set the ANDROID_DEVICE_ID environment variable.")
+  if @xtc_api_key.nil? || 0 == @xtc_api_key.length
+    raise Exception.new("No Test Cloud API  specified. Please set the XTC_API_KEY environment variable.")
   end
 
   if @ios_device_id.nil? || 0 == @ios_device_id.length
-    raise Exception.new("No iOS Device ID specified - set the IOS_DEVICE_ID environment variable.")
+    raise Exception.new("No iOS test devices specifed. Please set the XTC_IOS_DEVICE_ID environment variable.")
   end
 
+  if @android_device_id.nil? || 0 == @android_device_id.length
+    raise Exception.new("No Android test devices specified. Please set the XTC_ANDROID_DEVICE_ID environment variable.")
+  end
+
+  if (@xtc_user.nil? || 0 == @xtc_user)
+    raise Exception.new("No Test Cloud team member specified. Please set the XTC_USER environment variable.")
+  end
 end
 
 desc "Cleans the project, removing any artifacts from previous builds"
@@ -59,13 +67,7 @@ task :clean do
   directories_to_delete = [
       "./screenshots",
       "./test_servers",
-      "./testresults.html",
-      "./CreditCardValidation.iOS/bin",
-      "./CreditCardValidation.iOS/obj",
-      "./CreditCardValidation.Droid/bin",
-      "./CreditCardValidation.Droid/obj",
-      "./CreditCardValidation.Core/bin",
-      "./CreditCardValidation.Core/obj"
+      "./testresults.html"
   ]
 
   directories_to_delete.each { |x|
@@ -79,17 +81,18 @@ task :build => [:clean, :build_android, :build_ios] do
 end
 
 task :build_android do
+  puts "Build a RELEASE version."
   system("#{@xbuild} /verbosity:diagnostic /t:Package /p:Configuration=Release /p:AndroidUseSharedRuntime=false /p:EmbedAssembliesIntoApk=true ./CreditCardValidation.Droid/CreditCardValidation.Droid.csproj")
-  system("#{@xbuild} /verbosity:diagnostic /t:Package /p:Configuration=Debug /p:AndroidUseSharedRuntime=false /p:EmbedAssembliesIntoApk=true ./CreditCardValidation.Droid/CreditCardValidation.Droid.csproj")
 
+  puts "Build a DEBUG version."
+  system("#{@xbuild} /verbosity:diagnostic /t:Package /p:Configuration=Debug /p:AndroidUseSharedRuntime=false /p:EmbedAssembliesIntoApk=true ./CreditCardValidation.Droid/CreditCardValidation.Droid.csproj")
 end
 
 task :build_ios do
   puts "Build the IPA:"
   system("#{@mdtool} \"--configuration:Debug|iPhone\" CreditCardValidation.sln")
-  system("#{@mdtool} \"--configuration:Release|iPhone\" CreditCardValidation.sln")
 
-  puts "Build the iPhoneSimulator:"
+  puts "Build the iPhoneSimulator APP:"
   system("#{@mdtool} build \"--configuration:Debug|iPhoneSimulator\" CreditCardValidation.sln")
 end
 
@@ -98,20 +101,21 @@ task :xtc => [:xtc_android, :xtc_ios] do
 
 end
 
-task :xtc_android => [:require_environment] do
+task :xtc_android => [:require_environment, :build_android] do
   raise "Missing the APK #{@apk}." unless File.exists?(@apk)
-  command_line = "#{@test_cloud} submit #{@apk} #{@testcloud_api_key} --devices #{@android_device_id} --assembly-dir #{@test_assembly_dir} --app-name \"Simple Credit Card Validator\""
+
+  # Notice that tests are submit asynchronously
+  command_line = "#{@test_cloud} submit #{@apk} #{@xtc_api_key} --async --devices #{@android_device_id} --assembly-dir #{@test_assembly_dir} --app-name \"#{@xtc_app_name}\" --user #{@xtc_user} --series \"#{@xtc_series}\""
   tests_passed = system(command_line)
   raise "Some tests failed in test cloud - check the build log. #{command_line}" unless tests_passed
 end
 
-task :xtc_ios => [:require_environment] do
+task :xtc_ios => [:require_environment, :build_ios] do
   raise "Missing the IPA #{@ipa}." unless File.exists?(@ipa)
-  command_line = "#{@test_cloud} submit #{@ipa} #{@testcloud_api_key} --devices #{@ios_device_id} --assembly-dir #{@test_assembly_dir} --app-name \"Simple Credit Card Validator\" --dsym $DSYM"
-  tests_passed = system(command_line)
-  raise "Some tests failed in test cloud - check the build log." unless tests_passed
-end
 
-task :install_components do
-  system("#{@xamarin_component} restore CreditCardValidation.sln")
+  # Notice that tests are submit asynchronously
+  command_line = "#{@test_cloud} submit #{@ipa} #{@xtc_api_key} --async --devices #{@ios_device_id} --assembly-dir #{@test_assembly_dir} --app-name \"#{@xtc_app_name}\" --dsym $DSYM --user #{@xtc_user} --series \"#{@xtc_series}\""
+  tests_passed = system(command_line)
+
+  raise "Some tests failed in test cloud - check the build log." unless tests_passed
 end
