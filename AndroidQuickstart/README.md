@@ -1,5 +1,5 @@
 # Android Quickstart (Xamarin.UITest)
-This quickstart shows you the easiest way to create a basic test for your Android application using Xamarin.UITest.
+This quickstart shows you the easiest way to create a basic test in C# for your Android application with Xamarin.UITest.
 
 ## Setting your API Key
 Your API key for Xamarin Test Cloud is required if you wish to run on physical devices, or for test sessions longer than 15 minutes. You can find your API Key using the following instructions:
