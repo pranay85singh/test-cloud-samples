@@ -1,6 +1,6 @@
-﻿namespace Xamarin.UITest.Quickstart.Android
+﻿namespace AndroidQuickstart
 {
-	public class ApiKey
+	public static class ApiKey
 	{
 		// Your API key is on the Test Cloud web site.
 		// Log in, click your name, go to Account Settings, 

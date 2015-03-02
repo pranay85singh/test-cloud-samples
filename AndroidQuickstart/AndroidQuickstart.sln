@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Xamarin.UITest.Quickstart.Android", "Xamarin.UITest.Quickstart.Android\Xamarin.UITest.Quickstart.Android.csproj", "{2BBBEC5A-D1F3-482A-9F6A-C05FFD606BD8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AndroidQuickstart", "AndroidQuickstart\AndroidQuickstart.csproj", "{2BBBEC5A-D1F3-482A-9F6A-C05FFD606BD8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2BBBEC5A-D1F3-482A-9F6A-C05FFD606BD8}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>Xamarin.UITest.Quickstart.Android</RootNamespace>
-    <AssemblyName>Xamarin.UITest.Quickstart.Android</AssemblyName>
+    <RootNamespace>AndroidQuickstart</RootNamespace>
+    <AssemblyName>AndroidQuickstart</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">

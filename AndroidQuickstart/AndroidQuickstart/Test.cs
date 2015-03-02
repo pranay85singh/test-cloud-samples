@@ -1,10 +1,10 @@
 ﻿using NUnit.Framework;
 using Xamarin.UITest;
 
-namespace Xamarin.UITest.Quickstart.Android
+namespace AndroidQuickstart
 {
 	[TestFixture]
-	public class QuickstartTests
+	public class AndroidQuickstart
 	{
 		private IApp app;
 		private const string pathToBinary = "com.xamarin.XamStore.apk";
