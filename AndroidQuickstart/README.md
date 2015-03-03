@@ -29,7 +29,7 @@ Detailed instructions are available in the [Submitting Tests documentation](http
 
 ## Modifying this sample
 1. Clone the repo or download the archive.
-2. In `ApiKey.cs`, change your API Key (see Finding Your API Key section below)
+2. In `ApiKey.cs`, change your API Key (see Setting Your API Key section above)
 3. In `Test.cs`, change the `pathToBinary` variable to point to the location of your desired Android `.apk` bundle on disk. 
 4. After you've linked up your app, you can remove `com.xamarin.XamStore.apk` from the solution if you wish.
 
