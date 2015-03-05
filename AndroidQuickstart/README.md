@@ -1,4 +1,6 @@
-# Android Quickstart (Xamarin.UITest)
+Android Quickstart (Xamarin.UITest)
+===================================
+
 This quickstart shows you the easiest way to create a basic test in C# for your Android application with Xamarin.UITest.
 
 ## Setting your API Key
