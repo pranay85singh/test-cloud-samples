@@ -3,6 +3,10 @@ Android Quickstart (Xamarin.UITest)
 
 This quickstart shows you the easiest way to create a basic test in C# for your Android application with Xamarin.UITest.
 
+The project relies on two NuGet packages: 
+* [NUnit](https://www.nuget.org/packages/NUnit/): a unit test runner and framework for .NET
+* [Xamarin.UITest](https://www.nuget.org/packages/Xamarin.UITest/): our C#-based UI testing framework for testing locally and in Xamarin Test Cloud
+
 ## Setting your API Key
 Your API key for Xamarin Test Cloud is required if you wish to run on physical devices, or for test sessions longer than 15 minutes. You can find your API Key using the following instructions:
 
