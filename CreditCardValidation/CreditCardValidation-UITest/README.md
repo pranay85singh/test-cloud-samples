@@ -8,32 +8,44 @@ To get started with this project, it is necessary to log in to test cloud, creat
 Once you have these values, you can update one of the build scripts (described below) and upload the application and test to Test Cloud at the command line.
 
 
-## Build Scripts
+## About the Rakefile
 
-Creating a build script is a great way to automate and simplify the compilation of the mobile applications and submitting them to Xamarin Test Cloud. This project provides two possible build scripts. One is a bash script, the other is a Rakefile.
+This application uses [Rake](https://github.com/ruby/rake) to build and submit the application to Xamarin Test Cloud. The included `Rakefile` has the following tasks:
 
+    $ rake -T
+    rake build              # Compiles the Android and iOS projects
+    rake clean              # Cleans the project, removing any artifacts from previous builds
+    rake signing_info_file  # Rebuild the Android APK, sign it, and then generate the signing information file
+    rake xtc                # Builds the application and then submits the APK and IPA to Xamarin Test Cloud
 
-### Using the bash Build Script
+The Rakefile requires some environment variables set:
 
-To build the project and submit to Test Cloud using Bash, edit the file **build.sh** and add the XTC_API_KEY, Android Device ID, and the iOS Device ID where applicable. Then just run the bash script from Terminal:
-    
-    $ ./build.sh
+* `XTC_API_KEY` - this is the Test Cloud team API key
+* `XTC_IOS_DEVICE_ID` - the device ID of your selected iOS devices
+* `XTC_ANDROID_DEVICE_ID` - the device ID of your selected Android devices
+* `XTC_USER` - the e-mail address that is a member of the Test Cloud team specified by the API key.
 
+On simple way to set these variables is to create a text file called `init_vars.sh` with the following contents:
 
-### Using the Rakefile    
+    #!/bin/sh
+    export XTC_API_KEY=<YOUR API KEY>
+    export XTC_IOS_DEVICE_ID=ce1f9b91
+    export XTC_ANDROID_DEVICE_ID=fe27fcfe
+    export XTC_USER=<YOUR EMAIL>
 
-[Rake](https://rubygems.org/gems/rake) is another great tool for building applications. The include `Rakefile` has the following tasks:
-
-	$ rake -T
-	rake build  # Compiles the Android and iOS projects
-	rake clean  # Cleans the project, removing any artifacts from previous builds
-	rake xtc    # Builds the application and then submits the APK and IPA to Xamarin Test Cloud
+To set these environment variable, run `source init_vars` once, before running the Rake tasks.
 
 ## Generating the Signing Information File
 
-There are several options available for [signing the Android APK](http://developer.xamarin.com/guides/testcloud/submitting/#Signing_Android_APKs) prior to submitting it to Xamarin Test Cloud. One such option is to use a *signing information file*. This project includes a signing information file and a sample keystore.
+One of the Rake tasks is an example of how to create the signing information file from a custom  keystore file is `creditcardvalidation-example.keystore` and it has a single key in it called `uitest_sample`. The password for the keystore file is *password1*, while the password for the key is *password2*. The task performs the following steps:
 
-The name of the keystore file is `creditcardvalidation-example.keystore` and it has a single key in it called `uitest_sample`. The password for the keystore file is *password1*, while the password for the key is *password2*.
+ 1. Rebuild the Android APK
+ 2. Resign and zip align the APK using **./creditcardvalidation-example.keystore**
+ 3. Generate the signing information file.
+
+To build a signing information file, run
+
+    $ rake signing_info_file
 
 ### How the Keystore File was Created
 
@@ -59,10 +71,4 @@ To illustrate how to create the signing information file, the sample keystore ha
 
 
 **Note:** In a production environment the keystore file should not be included in source code control. It contains confidential information that is used to sign your application and should be protected. The keystore is only included in this example for demonstration purposes.
-
-The bash script `testcloud-submit-example.sh` demonstrates how to compile the APK, sign it, generate a *signing information* file, and then submit the APK using that signing information file. The signing information file, `testserver.si`, is also included in this sample. It is save to include signing information file in source code control.
-
-The signing information file was created with the following command line (the environment variables were initialized in the bash script):
- 
-    mono test-cloud.exe gen-sign-info $APK_FINAL ./creditcardvalidation-example.keystore $KEYSTORE_PASS uitest_sample $ALIAS_PASS --dir ./
 
