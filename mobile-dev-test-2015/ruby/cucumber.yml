@@ -1,0 +1,11 @@
+default: -r features
+
+# The cucumber.yml file allows for the portioning of your tests.
+# This is extremely helpful when you are running x-plat tests as you can point
+# to the necessary directories. You can also assign Environment variables here.
+
+# Tags can be used to specify which tests to run
+# Placing a tag above a feature will select all scenarios in that feature.
+# Placing a tag above a scenario will only select that scenario.
+# Multiple tag placements are allowed!
+# Adding a ~ in front of the @ symbol will omit the following tag
