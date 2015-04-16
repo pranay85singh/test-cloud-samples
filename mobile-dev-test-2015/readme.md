@@ -17,23 +17,36 @@ Your API key for Xamarin Test Cloud is required if you wish to run on physical d
 4. Click **Show API Key** for the team you want to upload tests to. API keys in Xamarin Test Cloud are shared per team.
 5. Replace the empty string in `Constants.cs` with your API key. There are also [other options for setting your API key](http://developer.xamarin.com/guides/testcloud/uitest/setting-the-api-key/), which we encourage you to check out. 
 
+## Modifying this sample
+1. Clone the repo or download the archive.
+2. In `Constants.cs`, change your API Key (see Finding Your API Key section above)
+3. In `Constants.cs`, change the path to point to the location of your desired Android `.apk` bundle on disk.
+
 ## Running the test locally
 1. Start an Android emulator or plug in a physical device. The device should be in the list when you type `adb devices` at a terminal.
 2. Open the solution in Xamarin Studio or Visual Studio.
 3. Run unit tests from the IDE. You can also do this from a console window after building the solution by typing `nunit-console.exe pathToTestDllFolder` at a command prompt.
 
-## Uploading this test to Xamarin Test Cloud
+Scripting with Calabash-Cucumber
+===================================
+##Purpose of a GemFile
+Gemfiles are used to define which gem version the tests will run. They are helpful in standardizing test runs across multiple users and on Xamarin Test Cloud. A `bundle init` will create the initial Gemfile, once created open the Gemfile with a text editor and input the desired version. `bundle update` will create a Gemfile.lock and using `bundle exec` in front of the next command will set the command to run with the Gemfile.lock.
+
+##Using a Cucumber.yml
+Cucumber.yml files let you configure your tests. [Check here for more detailed info](https://github.com/cucumber/cucumber/wiki/cucumber.yml).
+
+##Running the test locally
+Open the terminal and navigate to the directory containing the features file.
+Use `bundle exec calabash-android run <path-to-apk>` optionally add `-p <profile>` if you have a profile in your cucumber.yml file.
+
+Uploading this test to Xamarin Test Cloud
+===================================
 Detailed instructions are available in the [Submitting Tests documentation](http://developer.xamarin.com/guides/testcloud/submitting/).
 
 1. Log in to [Xamarin Test Cloud](http://testcloud.xamarin.com) and click **New Test Run** in the upper right.
 2. Select **New Android app** and choose your team.
 3. Follow the instructions until you have a command line to execute.
 4. Modify the paths and execute the command line. 
-
-## Modifying this sample
-1. Clone the repo or download the archive.
-2. In `Constants.cs`, change your API Key (see Finding Your API Key section above)
-3. In `Constants.cs`, change the path to point to the location of your desired Android `.apk` bundle on disk. 
 
 ## What's next?
 Now that you have a functioning environment set up for Xamarin.UITest, and have successfully uploaded a test, you can now start inspecting more about your app. A suggested next step is to add `app.Repl()` to the first line of the `BasicTest`, which will pop up a REPL window and allow you to interact with the app using various commands such as `tree`.
