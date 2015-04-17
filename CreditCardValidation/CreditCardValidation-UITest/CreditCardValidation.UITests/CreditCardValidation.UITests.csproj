@@ -42,8 +42,8 @@
     <Compile Include="AndroidQueries.cs" />
     <Compile Include="iOSQueries.cs" />
     <Compile Include="IScreenQueries.cs" />
-    <Compile Include="Platform.cs" />
     <Compile Include="ValidateCreditCardTests.cs" />
+    <Compile Include="AppInitializer.cs" />
   </ItemGroup>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
@@ -54,5 +54,22 @@
   </Target>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CreditCardValidation.iOS\CreditCardValidation.iOS.csproj">
+      <Project>{123DF1F8-5307-4ECF-BCB6-941FA24B0AFC}</Project>
+      <Name>CreditCardValidation.iOS</Name>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\CreditCardValidation.Droid\CreditCardValidation.Droid.csproj">
+      <Project>{BF97CC65-457F-4373-8421-37502FE5A7B0}</Project>
+      <Name>CreditCardValidation.Droid</Name>
+      <ReferenceOutputAssembly>False</ReferenceOutputAssembly>
+      <Private>False</Private>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
 </Project>
