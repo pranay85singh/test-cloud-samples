@@ -60,8 +60,17 @@ namespace CreditCardValidator.Droid
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f050001
+			public const int creditCardNumberText = 2131034113;
+			
+			// aapt resource value: 0x7f050003
+			public const int errorMessagesText = 2131034115;
+			
+			// aapt resource value: 0x7f050002
+			public const int validateButton = 2131034114;
+			
 			// aapt resource value: 0x7f050000
-			public const int myButton = 2131034112;
+			public const int validationSuccessMessage = 2131034112;
 			
 			static Id()
 			{
@@ -77,7 +86,10 @@ namespace CreditCardValidator.Droid
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int Main = 2130903040;
+			public const int CreditCardValidationSuccess = 2130903040;
+			
+			// aapt resource value: 0x7f030001
+			public const int Main = 2130903041;
 			
 			static Layout()
 			{
@@ -93,10 +105,25 @@ namespace CreditCardValidator.Droid
 		{
 			
 			// aapt resource value: 0x7f040001
-			public const int app_name = 2130968577;
+			public const int activity_main = 2130968577;
+			
+			// aapt resource value: 0x7f040002
+			public const int activity_success = 2130968578;
 			
 			// aapt resource value: 0x7f040000
-			public const int hello = 2130968576;
+			public const int app_name = 2130968576;
+			
+			// aapt resource value: 0x7f040006
+			public const int credit_card_number_hint = 2130968582;
+			
+			// aapt resource value: 0x7f040004
+			public const int credit_card_validation_success_message = 2130968580;
+			
+			// aapt resource value: 0x7f040003
+			public const int credit_card_validation_success_name = 2130968579;
+			
+			// aapt resource value: 0x7f040005
+			public const int validate_credit_card_label = 2130968581;
 			
 			static String()
 			{

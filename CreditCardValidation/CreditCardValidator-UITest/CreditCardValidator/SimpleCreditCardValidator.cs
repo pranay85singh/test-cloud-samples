@@ -1,7 +1,7 @@
 ﻿namespace CreditCardValidation.Common
 {
 
-    public class CreditCardValidator : ICreditCardValidator
+    public class SimpleCreditCardValidator : ICreditCardValidator
     {
         /// <summary>
         ///   Runs a simple check to see if the credit card number is valid or not.
