@@ -45,7 +45,7 @@ namespace CreditCardValidator.UITests
 		}
 
 		[Test]
-		public void CreditCardNumber_IsBlank_DisplayErrorMessage(Platform platform)
+		public void CreditCardNumber_IsBlank_DisplayErrorMessage()
 		{
 
 			/* Act */
@@ -60,7 +60,7 @@ namespace CreditCardValidator.UITests
 		}
 
 		[Test]
-		public void CreditCardNumber_TooLong_DisplayErrorMessage(Platform platform)
+		public void CreditCardNumber_TooLong_DisplayErrorMessage()
 		{
 
 			/* Act */
@@ -75,7 +75,7 @@ namespace CreditCardValidator.UITests
 		}
 
 		[Test]
-		public void CreditCardNumber_TooShort_DisplayErrorMessage(Platform platform)
+		public void CreditCardNumber_TooShort_DisplayErrorMessage()
 		{
 			/* Act */
 			_app.EnterText(_queries.CreditCardNumberView, new string('9', 15));
