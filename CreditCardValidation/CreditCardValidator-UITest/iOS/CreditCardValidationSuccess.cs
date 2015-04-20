@@ -10,5 +10,13 @@ namespace CreditCardValidator.iOS
 		public CreditCardValidationSuccess (IntPtr handle) : base (handle)
 		{
 		}
+
+		public override void ViewDidLoad()
+		{
+			base.ViewDidLoad();
+			#if ENABLE_TEST_CLOUD
+			CreditCardIsValidLabel.AccessibilityIdentifier = "CreditCardIsValidLabel";
+			#endif
+		}
 	}
 }

@@ -51,11 +51,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Tests.cs" />
     <Compile Include="AppInitializer.cs" />
     <Compile Include="IScreenQueries.cs" />
     <Compile Include="iOSQueries.cs" />
     <Compile Include="AndroidQueries.cs" />
+    <Compile Include="ValidateCreditCardNumberTests.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

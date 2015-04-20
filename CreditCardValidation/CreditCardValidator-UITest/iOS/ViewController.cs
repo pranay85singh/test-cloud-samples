@@ -21,6 +21,9 @@ namespace CreditCardValidator.iOS
 			// Code to start the Xamarin Test Cloud Agent
 			#if ENABLE_TEST_CLOUD
 			Xamarin.Calabash.Start();
+			CreditCardTextField.AccessibilityIdentifier= "CreditCardTextField";
+			ValidateButton.AccessibilityIdentifier = "ValidateButton";
+			ErrorMessagesTextField.AccessibilityIdentifier = "ErrorMessagesTextField";
 			#endif
 
 		}
@@ -28,17 +31,13 @@ namespace CreditCardValidator.iOS
 		public override void ViewDidAppear(bool animated)
 		{
 			base.ViewDidAppear(animated);
-			CreditCardTextField.BackgroundColor = UIColor.White;;
+
+			CreditCardTextField.BackgroundColor = UIColor.White;
 			CreditCardTextField.Layer.BorderColor = UIColor.Clear.CGColor;
 			CreditCardTextField.Layer.BorderWidth = 0;
 			CreditCardTextField.Layer.CornerRadius = 0;
 			ErrorMessagesTextField.Text = String.Empty;					
 
-		}
-		public override void DidReceiveMemoryWarning()
-		{		
-			base.DidReceiveMemoryWarning();		
-			// Release any cached data, images, etc that aren't in use.		
 		}
 
 		partial void ValidateButton_TouchUpInside(UIButton sender)
@@ -46,7 +45,6 @@ namespace CreditCardValidator.iOS
 			ErrorMessagesTextField.Text = String.Empty;
 			string errorMessage;
 			bool isValid = _validator.IsCCValid(CreditCardTextField.Text, out errorMessage);
-
 
 			if(isValid)
 			{

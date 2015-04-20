@@ -114,10 +114,6 @@
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
     </Compile>
-    <Compile Include="CreditCardValidationScreen.cs" />
-    <Compile Include="CreditCardValidationScreen.designer.cs">
-      <DependentUpon>CreditCardValidationScreen.cs</DependentUpon>
-    </Compile>
     <Compile Include="CreditCardValidationSuccess.cs" />
     <Compile Include="CreditCardValidationSuccess.designer.cs">
       <DependentUpon>CreditCardValidationSuccess.cs</DependentUpon>
