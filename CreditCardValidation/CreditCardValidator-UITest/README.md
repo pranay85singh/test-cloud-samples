@@ -1,7 +1,7 @@
-CreditCardValidation-Start
+CreditCardValidation-UITest
 ============================
 
-Have you come looking for CreditCardValidation-Start solution? We've moved!  
+Have you come looking for CreditCardValidation-UITest solution? We've moved!  
 
 ![](../../images/moved.jpg)
 
