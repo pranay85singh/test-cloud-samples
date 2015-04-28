@@ -20,16 +20,13 @@ namespace CreditCardValidator.Droid.UITests
 		}
 
 		[Test]
-		public void ClickingButtonTwiceShouldChangeItsLabel()
+		public void CreditCardNumber_TooShort_DisplayErrorMessage()
 		{
-			Func<AppQuery, AppQuery> MyButton = c => c.Button("myButton");
+			app.WaitForElement(c => c.Marked("action_bar_title").Text("Enter Credit Card Number"));
+			app.EnterText(c=>c.Marked("creditCardNumberText"), new string('9', 15));
+			app.Tap(c => c.Marked("validateButton"));
 
-			app.Tap(MyButton);
-			app.Tap(MyButton);
-			AppResult[] results = app.Query(MyButton);
-			app.Screenshot("Button clicked twice.");
-
-			Assert.AreEqual("2 clicks!", results[0].Text);
+			app.WaitForElement(c => c.Marked("errorMessagesText").Text("Credit card number is too short."));
 		}
 	}
 }
