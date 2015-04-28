@@ -12,26 +12,22 @@ namespace CreditCardValidator.iOS
 		public ViewController(IntPtr handle) : base(handle)
 		{
 		}
+			
 
-		public override void ViewDidLoad()
+		public override void ViewWillAppear(bool animated)
 		{
-			base.ViewDidLoad();
-			// Perform any additional setup after loading the view, typically from a nib.
-		}
+			base.ViewWillAppear(animated);
+			ErrorMessagesTextField.Text = string.Empty;
+			CreditCardTextField.Text = string.Empty;
 
-		public override void DidReceiveMemoryWarning()
-		{
-			base.DidReceiveMemoryWarning();
-			// Release any cached data, images, etc that aren't in use.
 		}
-
 		partial void ValidateButton_TouchUpInside(UIButton sender)
 		{
 			ErrorMessagesTextField.Text = String.Empty;
 			string errorMessage;
 			bool isValid = _validator.IsCCValid(CreditCardTextField.Text, out errorMessage);
-
-
+			
+			
 			if(isValid)
 			{
 				UIViewController ctlr = this.Storyboard.InstantiateViewController("ValidCreditCardController");
@@ -39,14 +35,9 @@ namespace CreditCardValidator.iOS
 			} else
 			{
 				InvokeOnMainThread(() => {
-						CreditCardTextField.BackgroundColor = UIColor.Yellow;
-						CreditCardTextField.Layer.BorderColor = UIColor.Red.CGColor;
-						CreditCardTextField.Layer.BorderWidth = 2;
-						CreditCardTextField.Layer.CornerRadius = 5;
 						ErrorMessagesTextField.Text = errorMessage;					
 					});
 			}
-
 		}
 	}
 }
