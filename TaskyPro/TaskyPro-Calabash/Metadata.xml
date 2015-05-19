@@ -2,10 +2,10 @@
 <SampleMetadata>
 	<ID>45d4a947-539d-460f-8202-cce995f16a57</ID>
 	<Gallery>true</Gallery>
+	<Products>Test-Cloud</Products>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Intermediate</Level>
 	<Tags>Calabash</Tags>
-	<SupportedPlatforms>iOS</SupportedPlatforms>
-    <Brief>This project is an example of how to create cross platform function tests for Xamarin Test Cloud using Calabash. You will need have a Test Cloud account and a Test Cloud API key.</Brief>
+    <Brief>This project is an example of writing tests using the Page Object model in Calabash. You will need have a Test Cloud account and a Test Cloud API key.</Brief>
     <LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>

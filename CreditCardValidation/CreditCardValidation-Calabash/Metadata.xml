@@ -2,10 +2,10 @@
 <SampleMetadata>
 	<ID>68c24f2d-128a-4e51-9290-5784417adbfd</ID>
 	<Gallery>true</Gallery>
+	<Products>Test-Cloud</Products>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Intermediate</Level>
 	<Tags>Calabash</Tags>
-	<SupportedPlatforms>iOS</SupportedPlatforms>
 	<Brief>This is a sample project that shows how to use the Page-Object model to create cross-platform mobile tests.</Brief>
     <LicenseRequirement>Indie</LicenseRequirement>
 </SampleMetadata>
