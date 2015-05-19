@@ -4,7 +4,7 @@
 	<Gallery>false</Gallery>
 	<IsFullApplication>true</IsFullApplication>
 	<Level>Beginner</Level>
-	<Tags>Xamarin.UITest, Test-Cloud</Tags>
+	<Tags>UITest, Test-Cloud</Tags>
 	<SupportedPlatforms>Android</SupportedPlatforms>
 	<Brief>This sample is for the new Android quickstart guide.</Brief>
     <LicenseRequirement>Indie</LicenseRequirement>
