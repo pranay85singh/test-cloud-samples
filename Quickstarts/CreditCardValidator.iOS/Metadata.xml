@@ -2,7 +2,7 @@
 <SampleMetadata>
 	<ID>{4E1C03FC-DB48-419B-911F-5864AFF1A954}</ID>
 	<Products>Test-Cloud</Products>
-	<Gallery>false</Gallery>
+	<Gallery>true</Gallery>
 	<IsFullApplication>false</IsFullApplication>
 	<Level>Beginner</Level>
 	<Tags>UITest</Tags>
