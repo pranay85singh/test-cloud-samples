@@ -8,7 +8,7 @@ namespace BackdoorActivity
 	[Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@mipmap/icon")]
 	public class MainActivity : Activity
 	{
-        [Java.Interop.Export("StartActivityTwo")]
+		[Java.Interop.Export("StartActivityTwo")]
         public void StartActivityTwo()
 	    {
             Intent i = new Intent(this, typeof(SecondActivity));
