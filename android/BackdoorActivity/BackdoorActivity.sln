@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackdoorActivity", "App\BackdoorActivity.csproj", "{0D60CDE5-AF78-4D1E-9EC2-A78156843799}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackdoorActivity.UITests", "UITests\BackdoorActivity.UITests.csproj", "{2C134C29-4D62-49BD-AB25-0873CBFDAE52}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D60CDE5-AF78-4D1E-9EC2-A78156843799}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D60CDE5-AF78-4D1E-9EC2-A78156843799}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D60CDE5-AF78-4D1E-9EC2-A78156843799}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0D60CDE5-AF78-4D1E-9EC2-A78156843799}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D60CDE5-AF78-4D1E-9EC2-A78156843799}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D60CDE5-AF78-4D1E-9EC2-A78156843799}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{2C134C29-4D62-49BD-AB25-0873CBFDAE52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2C134C29-4D62-49BD-AB25-0873CBFDAE52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2C134C29-4D62-49BD-AB25-0873CBFDAE52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2C134C29-4D62-49BD-AB25-0873CBFDAE52}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
