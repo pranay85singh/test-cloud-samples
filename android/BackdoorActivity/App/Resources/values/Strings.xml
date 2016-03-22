@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+  <string name="app_name">Backdoor Activity</string>
+  
+  <string name="first_activity_title">First Activity</string>
+  <string name="first_activity_text">This is the first activity.</string>
+  <string name="first_button_text">Click for 2nd Activity</string>
+ 
+  <string name="second_activity_title">Second Activity</string>
+  <string name="second_activity_text">This is the second activity.</string>
+  <string name="second_button_text">Enter Text</string>
+</resources>
