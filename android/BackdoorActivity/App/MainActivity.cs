@@ -8,12 +8,14 @@ namespace BackdoorActivity
 	[Activity(Label = "@string/app_name", MainLauncher = true, Icon = "@mipmap/icon")]
 	public class MainActivity : Activity
 	{
+		#if DEBUG
 		[Java.Interop.Export("StartActivityTwo")]
         public void StartActivityTwo()
 	    {
             Intent i = new Intent(this, typeof(SecondActivity));
             StartActivity(i);
         }
+		#endif
 
         protected override void OnCreate(Bundle savedInstanceState)
 		{
